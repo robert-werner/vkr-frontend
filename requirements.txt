@@ -1,0 +1,10 @@
+fastapi[standard]
+cloudpathlib
+sqlalchemy[asyncio]
+asyncpg
+starlette
+aioboto3
+s3fs
+rq
+rq-dashboard-fast
+sqlalchemy-utils
