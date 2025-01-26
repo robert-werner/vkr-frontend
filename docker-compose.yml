@@ -1,36 +1,15 @@
+secrets:
+  postgresql_username:
+    environment: "POSTGRESQL_USERNAME"
+  postgresql_password:
+    environment: "POSTGRESQL_PASSWORD"
+
+
 services:
-  redis:
-    image: bitnami/redis:latest
-    volumes:
-      - redis-data:/bitnami/redis/data
-    environment:
-      - 'REDIS_PASSWORD=$REDIS_PASSWORD'
-    ports:
-      - "6379:6379"
-    secrets:
-      - redis_password
-  minio:
-    environment:
-     - "MINIO_DEFAULT_BUCKETS=data-sentinel-2"
-     - "MINIO_ROOT_USER=$MINIO_ROOT_USER"
-     - "MINIO_ROOT_PASSWORD=$MINIO_ROOT_PASSWORD"
-     - "MINIO_ACCESS_KEY=$MINIO_ACCESS_KEY"
-     - "MINIO_SECRET_KEY=$MINIO_SECRET_KEY"
-    image: bitnami/minio:latest
-    volumes:
-      - minio-data:/bitnami/minio/data
-    ports:
-      - "9000:9000"
-      - "9001:9001"
-    secrets:
-      - minio_user
-      - minio_password
-      - minio_access_key
-      - minio_secret_key
   download_status_db:
     image: bitnami/postgresql:latest
     ports:
-      - "6432:5432"
+      - "5432:5432"
     environment:
       - "POSTGRESQL_DATABASE=vkr"
       - "POSTGRESQL_USERNAME=$POSTGRESQL_USERNAME"
@@ -42,25 +21,5 @@ services:
       - dl-status-db:/bitnami/postgresql
 
 
-secrets:
-  minio_user:
-    environment: "MINIO_ROOT_USER"
-  minio_password:
-    environment: "MINIO_ROOT_PASSWORD"
-  minio_access_key:
-    environment: "MINIO_ACCESS_KEY"
-  minio_secret_key:
-    environment: "MINIO_SECRET_KEY"
-  postgresql_username:
-    environment: "POSTGRESQL_USERNAME"
-  postgresql_password:
-    environment: "POSTGRESQL_PASSWORD"
-  redis_password:
-    environment: "REDIS_PASSWORD"
-
-
 volumes:
-  minio-data:
   dl-status-db:
-  redis-data:
-

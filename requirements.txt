@@ -8,3 +8,4 @@ s3fs
 rq
 rq-dashboard-fast
 sqlalchemy-utils
+alembic

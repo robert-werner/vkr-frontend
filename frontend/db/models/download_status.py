@@ -1,8 +1,7 @@
 from sqlalchemy import Boolean
 from sqlalchemy.orm import Mapped, mapped_column
 
-from frontend.db import Base
-
+from frontend.db.models.base import Base
 
 class DownloadStatus(Base):
 

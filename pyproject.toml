@@ -1,0 +1,84 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "frontend"
+dynamic = ["version", "dependencies"]
+requires-python = ">=3.12"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+]
+
+[tool.setuptools.package-dir]
+where = "frontend"
+
+[tool.setuptools.dynamic]
+version = { attr = "frontend.__version__" }
+dependencies = {file = ["requirements.txt"]}
+
+[tool.distutils.bdist_wheel]
+universal = true
+
+[project.optional-dependencies]
+lint = [
+    "Flake8-pyproject",
+    "wemake-python-styleguide",
+    "black"
+]
+dev = ["pytest", "httpx", "pytest-html", "ansi2html"]
+
+[tool.flake8]
+max-line-length = 80
+ignore = [
+    "WPS115", # Found upper-case constant in a class
+    "WPS305", # Found `f` string
+    "WPS412", # Found logic inside __init__ module
+    "WPS348", # Found a line that starts with a dot
+    "N812",   # lowercase imported as non lowercase
+    "WPS420", # Found wrong keyword: pass
+    "WPS221", # Found line with high Jones Complexity
+    "WPS226", # Found string literal over-use
+    "WPS204", # Found overused expression
+    "WPS231", # Found function with too much cognitive complexity
+    "WPS602", # Found using `@staticmethod`
+    "WPS605", # Found method without arguments
+    "WPS210", # Found too many local variables
+    "WPS237", # Found a too complex 'f' string
+    "WPS604", # Found incorrect node inside `class` body
+    "WPS404", # Found complex default value
+    "WPS432", # Found magic number
+    "WPS410", # Found wrong metadata variable
+    "WPS504", # Found negated condition
+    "E701" # multiple statements on one line (colon)
+]
+extend-immutable-calls = ["fastapi.Depends", "fastapi.params.Depends"]
+exclude = [
+    "venv",
+    ".venv",
+    ".temp",
+    ".eggs",
+    "build",
+    "dist",
+    "__pycache__",
+    ".git",
+    ".nox",
+    "alembic"
+]
+
+inline-quotes = "double"
+max-methods = 10
+
+[tool.isort]
+force_sort_within_sections = true
+lexicographical = true
+order_by_type = false
+group_by_package = true
+include_trailing_comma = true
+multi_line_output = 3
+lines_after_imports = 2
+
+[tool.black]
+line-length = 80
+target-version = ["py312"]

@@ -1,4 +1,4 @@
-from frontend.db import async_session_local
+from frontend.db.models.base import async_session_local
 from frontend.db.models.download_status import DownloadStatus
 
 
