@@ -1,8 +1,9 @@
 FROM python:3.12-slim
 
-COPY . /opt/vkr_frontend
-WORKDIR /opt/vkr_frontend
+EXPOSE 8080
 
-RUN mkdir /tmp_downloads
-RUN pip install --no-cache-dir -r requirements.txt
+ADD . /opt/vkr-frontend
 
+RUN cd /opt/vkr-frontend && pip install --no-cache-dir -e .
+
+ENTRYPOINT /opt/vkr-frontend/scripts/exec_service.sh

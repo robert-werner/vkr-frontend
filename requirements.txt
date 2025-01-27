@@ -9,3 +9,6 @@ rq
 rq-dashboard-fast
 sqlalchemy-utils
 alembic
+nox
+black
+python-decouple
