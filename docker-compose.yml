@@ -17,8 +17,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    ports:
-      - "8081:8080"
+    network_mode: "host"
     volumes:
       - satellite-data:/opt/satellite-data
 
@@ -26,3 +25,4 @@ services:
 volumes:
   dl-status-db:
   satellite-data:
+    name: "satellite-data"
